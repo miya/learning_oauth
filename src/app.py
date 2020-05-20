@@ -42,15 +42,20 @@ def callback():
     auth.set_access_token(auth.access_token, auth.access_token_secret)
 
     api = tweepy.API(auth)
-    get_user_data(api)
+    user = get_user_data(api)
 
-    return "ok"
+    return render_template("result.html", user=user)
 
 
 def get_user_data(api):
-    user_data = api.me()
-    print(user_data)
-
+    user = api.me()
+    return {
+        "name": user.name,
+        "screen_name": user.screen_name,
+        "id_str": user.id_str,
+        "location": user.location,
+        "description": user.description
+    }
 
 
 if __name__ == "__main__":
