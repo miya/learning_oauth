@@ -1,19 +1,46 @@
 import os
 import tweepy
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
+app.secret_key = "hogehoge"
+
+callback_url = "http://127.0.0.1:5000/callback"
 
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
 
 
 @app.route("/")
-def callback():
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+def twitter_auth():
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
     redirect_url = auth.get_authorization_url()
     return render_template("hello.html", redirect_url=redirect_url)
 
 
+@app.route("/callback")
+def callback():
+    token = request.values.get("oauth_token", None)
+    verifier = request.values.get("oauth_verifier", None)
+
+    if token is None or verifier is None:
+        return False
+
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+
+    auth.request_token = {
+        "oauth_token": token,
+        "oauth_token_secret": verifier
+    }
+
+    auth.get_access_token(verifier)
+    auth.set_access_token(auth.access_token, auth.access_token_secret)
+
+    api = tweepy.API(auth)
+    print(api.me())
+
+    return "ok"
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080, threaded=True, debug=True)
