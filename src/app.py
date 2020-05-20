@@ -14,8 +14,13 @@ CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
 @app.route("/")
 def twitter_auth():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
-    redirect_url = auth.get_authorization_url()
-    return render_template("hello.html", redirect_url=redirect_url)
+
+    # 認証用のリダイレクトURLを生成、htmlに表示させる
+    try:
+        redirect_url = auth.get_authorization_url()
+        return render_template("hello.html", redirect_url=redirect_url)
+    except tweepy.TweepError:
+        return render_template("error.html")
 
 
 @app.route("/callback")
@@ -37,9 +42,15 @@ def callback():
     auth.set_access_token(auth.access_token, auth.access_token_secret)
 
     api = tweepy.API(auth)
-    print(api.me())
+    get_user_data(api)
 
     return "ok"
+
+
+def get_user_data(api):
+    user_data = api.me()
+    print(user_data)
+
 
 
 if __name__ == "__main__":
