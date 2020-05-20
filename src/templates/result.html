@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>result</title>
+    <link rel="stylesheet" href="{{url_for("static", filename="css/style.css")}}">
 </head>
 <body>
 <h1>result</h1>
-<ul>
+<ul class="user-data">
     <li>name: {{ user["name"] }}</li>
     <li>screen_name: {{ user["screen_name"] }}</li>
     <li>id_str: {{ user["id_str"] }}</li>
