@@ -49,13 +49,17 @@ def callback():
 
 def get_user_data(api):
     user = api.me()
-    return {
+    user_data_dic = {}
+
+    user_data_dic.update({
         "name": user.name,
         "screen_name": user.screen_name,
         "id_str": user.id_str,
         "location": user.location,
         "description": user.description
-    }
+    })
+
+    return user_data_dic
 
 
 if __name__ == "__main__":
