@@ -3,16 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>result</title>
-    <link rel="stylesheet" href="{{url_for("static", filename="css/style.css")}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-<h1>result</h1>
-<ul class="user-data">
-    <li>name: {{ user["name"] }}</li>
-    <li>screen_name: {{ user["screen_name"] }}</li>
-    <li>id_str: {{ user["id_str"] }}</li>
-    <li>location: {{ user["location"] }}</li>
-    <li>description: {{ user["description"] }}</li>
-</ul>
+<div class="container">
+    <h1>result</h1>
+    <table class="table table-dark">
+        <tr>
+            <th>name</th>
+            <td>{{ user["name"] }}</td>
+        </tr>
+        <tr>
+            <th>screen_name</th>
+            <td>{{ user["screen_name"] }}</td>
+        </tr>
+        <tr>
+            <th>id_str</th>
+            <td>{{ user["id_str"] }}</td>
+        </tr>
+        <tr>
+            <th>location</th>
+            <td>{{ user["location"] }}</td>
+        </tr>
+        <tr>
+            <th>description</th>
+            <td>{{ user["description"] }}</td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
