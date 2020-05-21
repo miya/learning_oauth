@@ -1,6 +1,6 @@
 import os
 import tweepy
-from flask import Flask, request, render_template
+from flask import Flask, request, redirect, render_template
 
 app = Flask(__name__)
 app.secret_key = "hogehoge"
@@ -12,13 +12,18 @@ CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
 
 
 @app.route("/")
+def root():
+    return render_template("hello.html")
+
+
+@app.route("/", methods=["POST"])
 def twitter_auth():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
 
-    # 認証用のリダイレクトURLを生成、htmlに表示させる
+    # 認証用のリダイレクトURLを生成、リダイレクトさせる
     try:
         redirect_url = auth.get_authorization_url()
-        return render_template("hello.html", redirect_url=redirect_url)
+        return redirect(redirect_url)
     except tweepy.TweepError:
         return render_template("error.html")
 
