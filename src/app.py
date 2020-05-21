@@ -5,10 +5,9 @@ from flask import Flask, request, redirect, render_template
 app = Flask(__name__)
 app.secret_key = "hogehoge"
 
-callback_url = "http://127.0.0.1:5000/callback"
-
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+CALLBACK_URL = os.environ.get("CALLBACK_URL")
 
 
 @app.route("/")
@@ -16,11 +15,10 @@ def root():
     return render_template("hello.html")
 
 
+# 認証用のリダイレクトURLを生成、リダイレクトさせる
 @app.route("/", methods=["POST"])
 def twitter_auth():
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback_url)
-
-    # 認証用のリダイレクトURLを生成、リダイレクトさせる
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL)
     try:
         redirect_url = auth.get_authorization_url()
         return redirect(redirect_url)
