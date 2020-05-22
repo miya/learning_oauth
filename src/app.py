@@ -23,15 +23,52 @@ def twitter_auth():
 # ユーザー情報を取得する
 def get_user_data(api):
     user = api.me()
-    user_data_dic = {}
-
-    user_data_dic.update({
+    user_data_dic = {
+        "id": user.id,
+        "id_str": user.id_str,
         "name": user.name,
         "screen_name": user.screen_name,
-        "id_str": user.id_str,
         "location": user.location,
-        "description": user.description
-    })
+        "profile_location": user.profile_location,
+        "description": user.description,
+        "url": user.url,
+        "protected": user.protected,
+        "followers_count": user.followers_count,
+        "friends_count": user.friends_count,
+        "listed_count": user.listed_count,
+        "created_at": user.created_at,
+        "favourites_count": user.favourites_count,
+        "utc_offset": user.utc_offset,
+        "time_zone": user.time_zone,
+        "geo_enabled": user.geo_enabled,
+        "verified": user.verified,
+        "statuses_count": user.statuses_count,
+        "lang": user.lang,
+        "contributors_enabled": user.contributors_enabled,
+        "is_translator": user.is_translator,
+        "is_translation_enabled": user.is_translation_enabled,
+        "profile_background_color": user.profile_background_color,
+        "profile_background_image_url": user.profile_background_image_url,
+        "profile_background_image_url_https": user.profile_background_image_url_https,
+        "profile_background_tile": user.profile_background_tile,
+        "profile_image_url": user.profile_image_url,
+        "profile_image_url_https": user.profile_image_url_https,
+        "profile_banner_url": user.profile_banner_url,
+        "profile_link_color": user.profile_link_color,
+        "profile_sidebar_border_color": user.profile_sidebar_border_color,
+        "profile_sidebar_fill_color": user.profile_sidebar_fill_color,
+        "profile_text_color": user.profile_text_color,
+        "profile_use_background_image": user.profile_use_background_image,
+        "has_extended_profile": user.has_extended_profile,
+        "default_profile": user.default_profile,
+        "default_profile_image": user.default_profile_image,
+        "following": user.following,
+        "follow_request_sent": user.follow_request_sent,
+        "notifications": user.notifications,
+        "translator_type": user.translator_type,
+        "suspended": user.suspended,
+        "needs_phone_verification": user.needs_phone_verification,
+    }
     return user_data_dic
 
 
@@ -67,7 +104,6 @@ def callback():
     user = get_user_data(api)
 
     return render_template("result.html", user=user)
-
 
 
 if __name__ == "__main__":
