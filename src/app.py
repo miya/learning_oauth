@@ -74,7 +74,7 @@ def get_user_data(api):
 
 @app.route("/")
 def root():
-    return render_template("hello.html")
+    return render_template("login.html")
 
 
 @app.route("/", methods=["POST"])
