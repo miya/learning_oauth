@@ -6,191 +6,193 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container text-center mt-3 mb-5">
+    <div class="container text-center p-5">
 
         <!- タイトル ->
-        <h1 class="text-secondary text-left">Twitter Detail Profile</h1>
+        <h1 class="text-secondary mb-4">Twitter Detail Profile</h1>
 
-        <!- テーブル->
-        <table class="table table-hover shadow">
-            <tr>
-                <th>id</th>
-                <td>{{ user["id"] }}</td>
-            </tr>
-            <tr>
-                <th>id_str</th>
-                <td>{{ user["id_str"] }}</td>
-            </tr>
-            <tr>
-                <th>name</th>
-                <td>{{ user["name"] }}</td>
-            </tr>
-            <tr>
-                <th>screen_name</th>
-                <td>{{ user["screen_name"] }}</td>
-            </tr>
-            <tr>
-                <th>location</th>
-                <td>{{ user["location"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_location</th>
-                <td>{{ user["profile_location"] }}</td>
-            </tr>
-            <tr>
-                <th>description</th>
-                <td>{{ user["description"] }}</td>
-            </tr>
-            <tr>
-                <th>url</th>
-                <td><a href="{{ user["url"] }}">{{ user["url"] }}</a></td>
-            </tr>
-            <tr>
-                <th>protected</th>
-                <td>{{ user["protected"] }}</td>
-            </tr>
-            <tr>
-                <th>followers_count</th>
-                <td>{{ user["followers_count"] }}</td>
-            </tr>
-            <tr>
-                <th>friends_count</th>
-                <td>{{ user["friends_count"] }}</td>
-            </tr>
-            <tr>
-                <th>listed_count</th>
-                <td>{{ user["listed_count"] }}</td>
-            </tr>
-            <tr>
-                <th>created_at</th>
-                <td>{{ user["created_at"] }}</td>
-            </tr>
-            <tr>
-                <th>favourites_count</th>
-                <td>{{ user["favourites_count"] }}</td>
-            </tr>
-            <tr>
-                <th>utc_offset</th>
-                <td>{{ user["utc_offset"] }}</td>
-            </tr>
-            <tr>
-                <th>time_zone</th>
-                <td>{{ user["time_zone"] }}</td>
-            </tr>
+        <!- テーブル ->
+        <div class="table-responsive">
+            <table class="table table-hover shadow text-center">
+                <tr>
+                    <th>id</th>
+                    <td>{{ user["id"] }}</td>
+                </tr>
+                <tr>
+                    <th>id_str</th>
+                    <td>{{ user["id_str"] }}</td>
+                </tr>
+                <tr>
+                    <th>name</th>
+                    <td>{{ user["name"] }}</td>
+                </tr>
+                <tr>
+                    <th>screen_name</th>
+                    <td>{{ user["screen_name"] }}</td>
+                </tr>
+                <tr>
+                    <th>location</th>
+                    <td>{{ user["location"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_location</th>
+                    <td>{{ user["profile_location"] }}</td>
+                </tr>
+                <tr>
+                    <th>description</th>
+                    <td>{{ user["description"] }}</td>
+                </tr>
+                <tr>
+                    <th>url</th>
+                    <td><a href="{{ user["url"] }}">{{ user["url"] }}</a></td>
+                </tr>
+                <tr>
+                    <th>protected</th>
+                    <td>{{ user["protected"] }}</td>
+                </tr>
+                <tr>
+                    <th>followers_count</th>
+                    <td>{{ user["followers_count"] }}</td>
+                </tr>
+                <tr>
+                    <th>friends_count</th>
+                    <td>{{ user["friends_count"] }}</td>
+                </tr>
+                <tr>
+                    <th>listed_count</th>
+                    <td>{{ user["listed_count"] }}</td>
+                </tr>
+                <tr>
+                    <th>created_at</th>
+                    <td>{{ user["created_at"] }}</td>
+                </tr>
+                <tr>
+                    <th>favourites_count</th>
+                    <td>{{ user["favourites_count"] }}</td>
+                </tr>
+                <tr>
+                    <th>utc_offset</th>
+                    <td>{{ user["utc_offset"] }}</td>
+                </tr>
+                <tr>
+                    <th>time_zone</th>
+                    <td>{{ user["time_zone"] }}</td>
+                </tr>
 
-            <tr>
-                <th>geo_enabled</th>
-                <td>{{ user["geo_enabled"] }}</td>
-            </tr>
-            <tr>
-                <th>verified</th>
-                <td>{{ user["verified"] }}</td>
-            </tr>
-            <tr>
-                <th>statuses_count</th>
-                <td>{{ user["statuses_count"] }}</td>
-            </tr>
-            <tr>
-                <th>lang</th>
-                <td>{{ user["lang"] }}</td>
-            </tr>
-            <tr>
-                <th>contributors_enabled</th>
-                <td>{{ user["contributors_enabled"] }}</td>
-            </tr>
-            <tr>
-                <th>is_translator</th>
-                <td>{{ user["is_translator"] }}</td>
-            </tr>
-            <tr>
-                <th>is_translation_enabled</th>
-                <td>{{ user["is_translation_enabled"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_background_color</th>
-                <td>{{ user["profile_background_color"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_background_image_url</th>
-                <td><a href="{{ user["profile_background_image_url"] }}"></a>{{ user["profile_background_image_url"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_background_image_url_https</th>
-                <td><a href="{{ user["profile_background_image_url_https"] }}">{{ user["profile_background_image_url_https"] }}</a></td>
-            </tr>
-            <tr>
-                <th>profile_background_tile</th>
-                <td>{{ user["profile_background_tile"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_image_url</th>
-                <td><a href="{{ user["profile_image_url"] }}">{{ user["profile_image_url"] }}</a></td>
-            </tr>
-            <tr>
-                <th>profile_image_url_https</th>
-                <td><a href="{{ user["profile_image_url_https"] }}">{{ user["profile_image_url_https"] }}</a></td>
-            </tr>
-            <tr>
-                <th>profile_banner_url</th>
-                <td><a href="{{ user["profile_banner_url"] }}">{{ user["profile_banner_url"] }}</a></td>
-            </tr>
-            <tr>
-                <th>profile_link_color</th>
-                <td>{{ user["profile_link_color"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_sidebar_border_color</th>
-                <td>{{ user["profile_sidebar_border_color"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_sidebar_fill_color</th>
-                <td>{{ user["profile_sidebar_fill_color"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_text_color</th>
-                <td>{{ user["profile_text_color"] }}</td>
-            </tr>
-            <tr>
-                <th>profile_use_background_image</th>
-                <td>{{ user["profile_use_background_image"] }}</td>
-            </tr>
-            <tr>
-                <th>has_extended_profile</th>
-                <td>{{ user["has_extended_profile"] }}</td>
-            </tr>
-            <tr>
-                <th>default_profile</th>
-                <td>{{ user["default_profile"] }}</td>
-            </tr>
-            <tr>
-                <th>default_profile_image</th>
-                <td>{{ user["default_profile_image"] }}</td>
-            </tr>
-            <tr>
-                <th>following</th>
-                <td>{{ user["following"] }}</td>
-            </tr>
-            <tr>
-                <th>follow_request_sent</th>
-                <td>{{ user["follow_request_sent"] }}</td>
-            </tr>
-            <tr>
-                <th>notifications</th>
-                <td>{{ user["notifications"] }}</td>
-            </tr>
-            <tr>
-                <th>translator_type</th>
-                <td>{{ user["translator_type"] }}</td>
-            </tr>
-            <tr>
-                <th>suspended</th>
-                <td>{{ user["suspended"] }}</td>
-            </tr>
-            <tr>
-                <th>needs_phone_verification</th>
-                <td>{{ user["needs_phone_verification"] }}</td>
-            </tr>
-        </table>
+                <tr>
+                    <th>geo_enabled</th>
+                    <td>{{ user["geo_enabled"] }}</td>
+                </tr>
+                <tr>
+                    <th>verified</th>
+                    <td>{{ user["verified"] }}</td>
+                </tr>
+                <tr>
+                    <th>statuses_count</th>
+                    <td>{{ user["statuses_count"] }}</td>
+                </tr>
+                <tr>
+                    <th>lang</th>
+                    <td>{{ user["lang"] }}</td>
+                </tr>
+                <tr>
+                    <th>contributors_enabled</th>
+                    <td>{{ user["contributors_enabled"] }}</td>
+                </tr>
+                <tr>
+                    <th>is_translator</th>
+                    <td>{{ user["is_translator"] }}</td>
+                </tr>
+                <tr>
+                    <th>is_translation_enabled</th>
+                    <td>{{ user["is_translation_enabled"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_background_color</th>
+                    <td>{{ user["profile_background_color"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_background_image_url</th>
+                    <td><a href="{{ user["profile_background_image_url"] }}">{{ user["profile_background_image_url"] }}</a></td>
+                </tr>
+                <tr>
+                    <th>profile_background_image_url_https</th>
+                    <td><a href="{{ user["profile_background_image_url_https"] }}">{{ user["profile_background_image_url_https"] }}</a></td>
+                </tr>
+                <tr>
+                    <th>profile_background_tile</th>
+                    <td>{{ user["profile_background_tile"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_image_url</th>
+                    <td><a href="{{ user["profile_image_url"] }}">{{ user["profile_image_url"] }}</a></td>
+                </tr>
+                <tr>
+                    <th>profile_image_url_https</th>
+                    <td><a href="{{ user["profile_image_url_https"] }}">{{ user["profile_image_url_https"] }}</a></td>
+                </tr>
+                <tr>
+                    <th>profile_banner_url</th>
+                    <td><a href="{{ user["profile_banner_url"] }}">{{ user["profile_banner_url"] }}</a></td>
+                </tr>
+                <tr>
+                    <th>profile_link_color</th>
+                    <td>{{ user["profile_link_color"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_sidebar_border_color</th>
+                    <td>{{ user["profile_sidebar_border_color"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_sidebar_fill_color</th>
+                    <td>{{ user["profile_sidebar_fill_color"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_text_color</th>
+                    <td>{{ user["profile_text_color"] }}</td>
+                </tr>
+                <tr>
+                    <th>profile_use_background_image</th>
+                    <td>{{ user["profile_use_background_image"] }}</td>
+                </tr>
+                <tr>
+                    <th>has_extended_profile</th>
+                    <td>{{ user["has_extended_profile"] }}</td>
+                </tr>
+                <tr>
+                    <th>default_profile</th>
+                    <td>{{ user["default_profile"] }}</td>
+                </tr>
+                <tr>
+                    <th>default_profile_image</th>
+                    <td>{{ user["default_profile_image"] }}</td>
+                </tr>
+                <tr>
+                    <th>following</th>
+                    <td>{{ user["following"] }}</td>
+                </tr>
+                <tr>
+                    <th>follow_request_sent</th>
+                    <td>{{ user["follow_request_sent"] }}</td>
+                </tr>
+                <tr>
+                    <th>notifications</th>
+                    <td>{{ user["notifications"] }}</td>
+                </tr>
+                <tr>
+                    <th>translator_type</th>
+                    <td>{{ user["translator_type"] }}</td>
+                </tr>
+                <tr>
+                    <th>suspended</th>
+                    <td>{{ user["suspended"] }}</td>
+                </tr>
+                <tr>
+                    <th>needs_phone_verification</th>
+                    <td>{{ user["needs_phone_verification"] }}</td>
+                </tr>
+            </table>
+        </div>
 
         <!- フッター ->
         <footer class="footer">
