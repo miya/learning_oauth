@@ -23,4 +23,6 @@ TwitterのOAuth認証について学んだのでFlaskとTweepyで実装してみ
 5. `cd src`でapp.pyがあるディレクトリに移動
 6. `python3 app.py`でアプリの起動
 
- 
+## References
+* [一番わかりやすい OAuth の説明](https://qiita.com/TakahikoKawasaki/items/e37caf50776e00e733be)
+* [認証に関するチュートリアル](https://kurozumi.github.io/tweepy/auth_tutorial.html)
