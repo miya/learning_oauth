@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
-# CALLBACK_URL = os.environ.get("CALLBACK_URL")
-CALLBACK_URL = "https://8b77102f.ngrok.io/callback"
+CALLBACK_URL = "http://0.0.0.0:8080/callback"
 
 
 # 認証用URLを生成する
 def twitter_auth():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+
     try:
         redirect_url = auth.get_authorization_url()
         return redirect(redirect_url)
