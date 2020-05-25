@@ -4,6 +4,7 @@ TwitterのOAuth認証について学んだのでFlaskとTweepyで実装してみ
 アクセストークンをゲットして[UserObject](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object)を表示させるWebアプリ。
 
 ## What is OAuth
+OAuthは、権限の認可を行うためのオープンスタンダードである。例えばWebアプリケーションにTwitterのパスワードを渡さなくても、ツイートやタイムラインの読み込みを行うことができる。
 
 <img src=https://user-images.githubusercontent.com/34241526/82755818-0f818300-9e11-11ea-98a2-7ca90361d0c1.png width=70% alt="">
 
