@@ -3,9 +3,11 @@
 TwitterのOAuth認証について学んだのでFlaskとTweepyで実装してみたやつ。
 アクセストークンをゲットして[UserObject](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object)を表示させるWebアプリ。
 
+## Demo
+
 ## What is OAuth
 
-![](https://user-images.githubusercontent.com/34241526/82755818-0f818300-9e11-11ea-98a2-7ca90361d0c1.png)
+<img src=https://user-images.githubusercontent.com/34241526/82755818-0f818300-9e11-11ea-98a2-7ca90361d0c1.png width=70% alt="">
 
 1. クライアントアプリを使いたい
 2. アクセストークンを要求
