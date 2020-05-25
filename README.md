@@ -3,8 +3,6 @@
 TwitterのOAuth認証について学んだのでFlaskとTweepyで実装してみたやつ。
 アクセストークンをゲットして[UserObject](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object)を表示させるWebアプリ。
 
-## Demo
-
 ## What is OAuth
 
 <img src=https://user-images.githubusercontent.com/34241526/82755818-0f818300-9e11-11ea-98a2-7ca90361d0c1.png width=70% alt="">
@@ -24,6 +22,10 @@ TwitterのOAuth認証について学んだのでFlaskとTweepyで実装してみ
 4. `git clone https://github.com/miya/learning_twitter_oauth`でこのリポジトリをクローン
 5. `cd src`でapp.pyがあるディレクトリに移動
 6. `python3 app.py`でアプリの起動
+
+## Demo
+
+<img src=https://raw.githubusercontent.com/wiki/miya/learning_twitter_oauth/images/output.gif width=70% alt="">
 
 ## References
 * [一番わかりやすい OAuth の説明](https://qiita.com/TakahikoKawasaki/items/e37caf50776e00e733be)
