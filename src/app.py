@@ -1,8 +1,9 @@
 import os
 import tweepy
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, session, redirect, render_template
 
 app = Flask(__name__)
+app.secret_key = "hogehoge"
 
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
@@ -107,7 +108,10 @@ def callback():
     except tweepy.TweepError:
         return twitter_auth()
 
-    auth.set_access_token(auth.access_token, auth.access_token_secret)
+    session["access_token"] = auth.access_token
+    session["access_secret"] = auth.access_token_secret
+
+    auth.set_access_token(session["access_token"], session["access_secret"])
 
     api = tweepy.API(auth)
     user = get_user_data(api)
