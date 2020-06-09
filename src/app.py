@@ -72,7 +72,7 @@ def get_user_data(api):
     return user_data_dic
 
 
-@app.route("/")
+@app.route("/login")
 def root():
     return render_template("login.html")
 
