@@ -72,12 +72,12 @@ def get_user_data(api):
     return user_data_dic
 
 
-@app.route("/login")
+@app.route("/")
 def root():
     return render_template("login.html")
 
 
-@app.route("/", methods=["POST"])
+@app.route("/login", methods=["POST"])
 def login():
     return twitter_auth()
 
