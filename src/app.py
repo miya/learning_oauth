@@ -90,26 +90,27 @@ def logout():
 
 @app.route("/callback")
 def callback():
-    token = request.values.get("oauth_token", None)
-    verifier = request.values.get("oauth_verifier", None)
-
-    if token is None or verifier is None:
-        return False
-
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 
-    auth.request_token = {
-        "oauth_token": token,
-        "oauth_token_secret": verifier
-    }
+    if "access_token" not in session and "access_secret" not in session:
+        token = request.values.get("oauth_token", None)
+        verifier = request.values.get("oauth_verifier", None)
 
-    try:
-        auth.get_access_token(verifier)
-    except tweepy.TweepError:
-        return twitter_auth()
+        if token is None or verifier is None:
+            return False
 
-    session["access_token"] = auth.access_token
-    session["access_secret"] = auth.access_token_secret
+        auth.request_token = {
+            "oauth_token": token,
+            "oauth_token_secret": verifier
+        }
+
+        try:
+            auth.get_access_token(verifier)
+        except tweepy.TweepError:
+            return twitter_auth()
+
+        session["access_token"] = auth.access_token
+        session["access_secret"] = auth.access_token_secret
 
     auth.set_access_token(session["access_token"], session["access_secret"])
 
