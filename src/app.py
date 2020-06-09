@@ -7,7 +7,7 @@ app.secret_key = "hogehoge"
 
 CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
-CALLBACK_URL = "http://0.0.0.0:8080/callback"
+CALLBACK_URL = "http://0.0.0.0:8080/result"
 
 
 # 認証用URLを生成する
@@ -89,8 +89,8 @@ def logout():
     return redirect("/")
 
 
-@app.route("/callback")
-def callback():
+@app.route("/result")
+def result():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 
     if "access_token" not in session and "access_secret" not in session:
