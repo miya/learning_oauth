@@ -82,6 +82,11 @@ def login():
     return twitter_auth()
 
 
+@app.route("/logout", methods=["POST"])
+def logout():
+    return redirect("/")
+
+
 @app.route("/callback")
 def callback():
     token = request.values.get("oauth_token", None)
