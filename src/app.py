@@ -1,24 +1,37 @@
-import os
-import tweepy
+import config
+from twython import Twython
 from flask import Flask, request, session, redirect, render_template
 
 app = Flask(__name__)
-app.secret_key = "hogehoge"
+app.secret_key = config.SECRET_KEY
 
-CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
-CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+CONSUMER_KEY = config.twitter_keys["CONSUMER_KEY"]
+CONSUMER_SECRET = config.twitter_keys["CONSUMER_SECRET"]
+
 CALLBACK_URL = "http://0.0.0.0:8080/result"
 
 
 # 認証用URLを生成する
-def twitter_auth():
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+def create_auth_url():
+    twitter = Twython(CONSUMER_KEY, CONSUMER_SECRET)
+    auth = twitter.get_authentication_tokens(callback_url=CALLBACK_URL)
+    session["oauth_token"] = auth["oauth_token"]
+    session["oauth_secret"] = auth["oauth_token_secret"]
+    redirect_url = auth["auth_url"]
+    return redirect(redirect_url)
 
-    try:
-        redirect_url = auth.get_authorization_url()
-        return redirect(redirect_url)
-    except tweepy.TweepError:
-        return render_template("error.html")
+
+def twitter_auth():
+    oauth_verifier = request.values.get("oauth_verifier", None)
+    twitter = Twython(
+        CONSUMER_KEY,
+        CONSUMER_SECRET,
+        session["oauth_token"],
+        session["oauth_secret"]
+    )
+    final_step = twitter.get_authorized_tokens(oauth_verifier)
+    session["access_token"] = final_step["oauth_token"]
+    session["access_secret"] = final_step["oauth_token_secret"]
 
 
 # ユーザー情報を取得する
@@ -80,7 +93,7 @@ def root():
 
 @app.route("/login", methods=["POST"])
 def login():
-    return twitter_auth()
+    return create_auth_url()
 
 
 @app.route("/logout", methods=["POST"])
@@ -91,33 +104,18 @@ def logout():
 
 @app.route("/result")
 def result():
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 
     if "access_token" not in session and "access_secret" not in session:
-        token = request.values.get("oauth_token", None)
-        verifier = request.values.get("oauth_verifier", None)
+        twitter_auth()
 
-        if token is None or verifier is None:
-            return False
+    twitter = Twython(
+        CONSUMER_KEY,
+        CONSUMER_SECRET,
+        session["access_token"],
+        session["access_secret"]
+    )
 
-        auth.request_token = {
-            "oauth_token": token,
-            "oauth_token_secret": verifier
-        }
-
-        try:
-            auth.get_access_token(verifier)
-        except tweepy.TweepError:
-            return twitter_auth()
-
-        session["access_token"] = auth.access_token
-        session["access_secret"] = auth.access_token_secret
-
-    auth.set_access_token(session["access_token"], session["access_secret"])
-
-    api = tweepy.API(auth)
-    user = get_user_data(api)
-
+    user = twitter.verify_credentials()
     return render_template("result.html", user=user)
 
 
